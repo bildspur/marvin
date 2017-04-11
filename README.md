@@ -3,6 +3,6 @@ Marvin is an interactive projection mapping game which uses a springboard as con
 
 It is built with unity and arduino controller.
 
-![Planet](Assets/Sprites/PlanetC.png)
+![Planet](readme/game.png)
 
 *Yes, we do have planets!*
