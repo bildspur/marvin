@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlanetLogic : MonoBehaviour {
-	public float speed = 1;
-
+	public float rotationSpeed = 1;
 	GameObject planet;
 
 	// Use this for initialization
@@ -14,6 +13,6 @@ public class PlanetLogic : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		planet.transform.Rotate (0, 0, speed);
+		planet.transform.Rotate (0, 0, rotationSpeed);
 	}
 }
