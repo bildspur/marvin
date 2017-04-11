@@ -8,6 +8,8 @@ public class SerialInput : MonoBehaviour
 {
 	public volatile int Value = 0;
 
+	public bool isOn = true;
+
 	bool running = true;
 
 	Thread serialThread;
@@ -17,6 +19,9 @@ public class SerialInput : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
+		if(!isOn)
+			return;
+
 		serialThread = new Thread (new ThreadStart (SerialRun));
 		running = true;
 

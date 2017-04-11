@@ -3,15 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class BallLogic : MonoBehaviour, IJump
+public class PlayerLogic : MonoBehaviour, IJump
 {
-
-	Rigidbody rb;
+	Rigidbody2D rb;
 
 	// Use this for initialization
 	void Start ()
 	{
-		rb = GetComponent<Rigidbody> ();
+		rb = GetComponent<Rigidbody2D> ();
 	}
 
 	// Update is called once per frame
@@ -23,11 +22,11 @@ public class BallLogic : MonoBehaviour, IJump
 
 	public void JumpOnce ()
 	{
-		rb.AddForce (Vector3.up * 300);
+		rb.AddForce (transform.up * 300);
 	}
 
 	public void Jump ()
 	{
-		rb.AddForce (Vector3.up * 500);
+		rb.AddForce (transform.up * 500);
 	}
 }
