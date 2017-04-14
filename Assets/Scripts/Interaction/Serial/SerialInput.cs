@@ -10,6 +10,8 @@ public class SerialInput : MonoBehaviour
 
 	public bool isOn = true;
 
+	public string deviceName = "tty.usbmodem1461";
+
 	bool running = true;
 
 	Thread serialThread;
@@ -26,7 +28,7 @@ public class SerialInput : MonoBehaviour
 		running = true;
 
 		serialPort = new SerialPort ();
-		serialPort.PortName = "/dev/tty.usbmodem1411";
+		serialPort.PortName = "/dev/" + deviceName;
 		serialPort.BaudRate = 115200;
 		serialPort.Open ();
 
@@ -42,6 +44,7 @@ public class SerialInput : MonoBehaviour
 	void OnApplicationQuit ()
 	{
 		running = false;
+		serialThread.Join();
 	}
 
 	void SerialRun ()
@@ -55,5 +58,6 @@ public class SerialInput : MonoBehaviour
 				Value = num;
 		}
 		serialPort.Close ();
+		Debug.Log("Serial closed!");
 	}
 }
