@@ -40,5 +40,35 @@ public class PlayerLogic : MonoBehaviour, IJump
 		{
             animator.SetBool("Jumping", false);
         }
+
+        if(other.gameObject.CompareTag("Respawn"))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+
+        if(other.gameObject.CompareTag("Enemy"))
+        {
+            KillPlayer(other);
+        }
+    }
+
+    private void KillPlayer(Collision2D collision)
+    {
+        Collider2D collider = collision.collider;
+  
+        Vector3 contactPoint = collision.contacts[0].point;
+        Vector3 center = collider.bounds.center;
+
+        bool right = contactPoint.x > center.x;
+        bool top = contactPoint.y > center.y;
+
+        // enemy from the side
+        if(top == false)
+        {
+             var gravity = GetComponent("PlanetGravity") as PlanetGravity;
+             gravity.maxGravity = 0;
+             rb.constraints = RigidbodyConstraints2D.None;
+             rb.AddTorque(15, ForceMode2D.Force);
+        }
     }
 }
