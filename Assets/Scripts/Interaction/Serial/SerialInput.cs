@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using System.Threading;
 using System.IO.Ports;
 
@@ -50,7 +48,7 @@ public class SerialInput : MonoBehaviour
 	void SerialRun ()
 	{
 		while (running) {
-			Thread.Sleep (10);
+			Thread.Sleep (20);
 			var input = serialPort.ReadLine ().Trim ();
 			var num = 0;
 
@@ -58,6 +56,7 @@ public class SerialInput : MonoBehaviour
 				Value = num;
 		}
 		serialPort.Close ();
+		serialPort.Dispose();
 		Debug.Log("Serial closed!");
 	}
 }
