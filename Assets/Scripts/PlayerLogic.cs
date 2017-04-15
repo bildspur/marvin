@@ -14,7 +14,7 @@ public class PlayerLogic : MonoBehaviour, IJump
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
+        animator = this.transform.GetChild(0).transform.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -29,7 +29,7 @@ public class PlayerLogic : MonoBehaviour, IJump
         if (!jumping)
         {
             jumping = true;
-            animator.SetBool("Jumping", true);
+            animator.SetTrigger("StartJump");
             rb.AddForce(transform.up * 300);
         }
     }
@@ -38,7 +38,7 @@ public class PlayerLogic : MonoBehaviour, IJump
     {
         if (other.gameObject.CompareTag("Planet"))
         {
-            animator.SetBool("Jumping", false);
+            animator.SetTrigger("StopJump");
             jumping = false;
         }
 
@@ -71,6 +71,7 @@ public class PlayerLogic : MonoBehaviour, IJump
         // enemy from the side
         if (top == false)
         {
+            animator.SetTrigger("Dead");
             var gravity = GetComponent("PlanetGravity") as PlanetGravity;
             gravity.maxGravity = 0;
             rb.constraints = RigidbodyConstraints2D.None;
