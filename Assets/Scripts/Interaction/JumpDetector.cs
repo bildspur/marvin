@@ -1,32 +1,30 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class JumpDetector : MonoBehaviour
 {
     public GameObject jumpGameObject;
     public GameObject serialInputGameObject;
 
-    public int Threshold = 15;
+    public float threshold = 2.0f;
+
+    public int bufferSize = 16;
 
     IJump jump;
     SerialInput input;
 
     bool isJumping = false;
 
-    public int low = 5;
-    public int high = 8;
+    RingBuffer<float> buffer;
 
-    int lowValue = 0;
-    int highValue = 0;
-
-    bool lowTriggered = false;
-    bool highTriggered = false;
-
+    Complex[] fftBuffer;
 
     // Use this for initialization
     void Start()
     {
+        // init buffers
+        buffer = new RingBuffer<float>(bufferSize);
+        fftBuffer = new Complex[bufferSize];
+
         jump = jumpGameObject.GetComponent(typeof(IJump)) as IJump;
         input = serialInputGameObject.GetComponent(typeof(SerialInput)) as SerialInput;
     }
@@ -34,43 +32,35 @@ public class JumpDetector : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log ("Value: " + input.Value);
-
-		(GameObject.Find("DebugText").GetComponent("GUIText") as GUIText).text = "Input: " + input.Value;
-
+        (GameObject.Find("DebugText").GetComponent("GUIText") as GUIText).text = "Input: " + input.Value;
         DetectJump(input.Value);
     }
 
-    void DetectJump(int value)
+    void DetectJump(float value)
     {
-        if (value <= low)
-        {
-            lowTriggered = true;
-            highTriggered = false;
+        buffer.Add(value);
 
-            lowValue = value;
+        // calculate fft
+        PrepareBuffer();
+        FFT.CalculateFFT(fftBuffer, false);
+
+        for (int i = 0; i < fftBuffer.Length / 2; i++) // plot only the first half
+        {
+            // multiply the magnitude of each value by 2
+            Debug.DrawLine(new Vector3(i, 4), new Vector3(i, 4 + (float)fftBuffer[i].magnitude * 2), Color.white);
         }
+        // jump
+        /*  
+        Debug.Log("Jump! -> Height: ");
+        jump.Jump();
+		*/
+    }
 
-        if (value >= high)
+    void PrepareBuffer()
+    {
+        for (int i = 0; i < bufferSize; i++)
         {
-            highTriggered = true;
-        }
-
-        if (highTriggered && lowTriggered)
-        {
-            highValue = value;
-			int height = highValue - lowValue;
-
-			if(height < high)
-			{
-				// jump
-				Debug.Log("Jump! -> Height: " + height);
-				jump.Jump();
-			}
-
-            // reset
-            lowTriggered = false;
-            highTriggered = false;
+            fftBuffer[i] = new Complex(buffer[i], 0);
         }
     }
 }

@@ -45,7 +45,7 @@ public class GameController : MonoBehaviour
 
     public void AddWave()
     {
-        wave ++;
+        wave++;
         UpdateScore();
     }
     public void AddScore(int newScoreValue)
