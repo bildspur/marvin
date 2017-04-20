@@ -52,8 +52,6 @@ public class PlayerLogic : MonoBehaviour, IJump
     {
         if (other.gameObject.CompareTag("Respawn"))
         {
-            // unload serial port
-
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
