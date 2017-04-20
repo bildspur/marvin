@@ -61,7 +61,8 @@ public class JumpDetector : MonoBehaviour
         var amp = (float)fftBuffer[frequencyBand].magnitude * 2;
 
         // show debug info
-        (GameObject.Find("DebugText").GetComponent("GUIText") as GUIText).text = $"Input: {input.Value}\nFFT: {amp}\nMax: {maxAmp}";
+        var scoreText = (GameObject.Find("DebugText").GetComponent("GUIText") as GUIText);
+        scoreText.text = "Input: " + input.Value + "\nFFT: " + amp + "\nMax: " + maxAmp;
 
         if (maxAmp < amp)
             maxAmp = amp;

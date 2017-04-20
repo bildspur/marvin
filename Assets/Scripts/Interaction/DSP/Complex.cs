@@ -27,7 +27,7 @@ public struct Complex
 
     public override string ToString()
     {
-        return $"({real}, {img})";
+        return "(" + real + ", " + img + ")";
     }
 
     #region Basic operations + - * /
