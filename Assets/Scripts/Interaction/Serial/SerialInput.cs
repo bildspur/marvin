@@ -10,7 +10,7 @@ public class SerialInput : MonoBehaviour
 
     public string deviceName = "tty.usbmodem1461";
 
-    bool running = true;
+    bool running = false;
 
     Thread serialThread;
 
@@ -32,6 +32,8 @@ public class SerialInput : MonoBehaviour
 
         serialThread.Start();
         Debug.Log("serial started...");
+
+        running = true;
     }
 
     // Update is called once per frame
@@ -51,8 +53,11 @@ public class SerialInput : MonoBehaviour
 
     void Stop()
     {
-        running = false;
-        serialThread.Join();
+        if (running)
+        {
+            running = false;
+            serialThread.Join();
+        }
     }
 
     void SerialRun()
