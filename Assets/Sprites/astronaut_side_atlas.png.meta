@@ -1,18 +1,18 @@
 fileFormatVersion: 2
-guid: e93e3c6ad1a8746b1ac7633a23597dec
-timeCreated: 1492268180
+guid: edadd8d59ef2c4751bb0fdcc29c29309
+timeCreated: 1492713354
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: head
-    21300002: left leg
-    21300004: left arm
-    21300006: torso
-    21300008: left foot
-    21300010: backpack
-    21300012: right arm
-    21300014: right leg
-    21300016: right foot
+    21300000: Right_Leg
+    21300002: Head
+    21300004: Backpack
+    21300006: Right_Foot
+    21300008: Torso
+    21300010: Left_Arm
+    21300012: Left_Leg
+    21300014: Right_Arm
+    21300016: Left_Foot
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -79,119 +79,119 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: head
+      name: Right_Leg
       rect:
         serializedVersion: 2
-        x: 239
-        y: 640
-        width: 369
-        height: 356
+        x: 264
+        y: 686
+        width: 189
+        height: 143
       alignment: 9
-      pivot: {x: 0.5298394, y: 0.02575375}
+      pivot: {x: 0.5000002, y: 0.76986974}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: left leg
+      name: Head
       rect:
         serializedVersion: 2
-        x: 644
-        y: 585
-        width: 159
-        height: 122
+        x: 495
+        y: 752
+        width: 432
+        height: 414
       alignment: 9
-      pivot: {x: 0.5, y: 0.74067163}
+      pivot: {x: 0.4910668, y: 0.024598494}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: left arm
+      name: Backpack
       rect:
         serializedVersion: 2
-        x: 55
-        y: 368
-        width: 273
-        height: 191
+        x: 56
+        y: 399
+        width: 152
+        height: 301
       alignment: 9
-      pivot: {x: 0.7890491, y: 0.9323593}
+      pivot: {x: 0.9316145, y: 0.775653}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: torso
+      name: Right_Foot
       rect:
         serializedVersion: 2
-        x: 382
-        y: 286
-        width: 200
-        height: 296
+        x: 256
+        y: 463
+        width: 204
+        height: 165
+      alignment: 9
+      pivot: {x: 0.36757854, y: 0.9209972}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Torso
+      rect:
+        serializedVersion: 2
+        x: 524
+        y: 338
+        width: 231
+        height: 348
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: left foot
+      name: Left_Arm
       rect:
         serializedVersion: 2
-        x: 638
-        y: 395
-        width: 174
-        height: 141
+        x: 728
+        y: 488
+        width: 320
+        height: 224
       alignment: 9
-      pivot: {x: 0.6160138, y: 0.90346706}
+      pivot: {x: 0.18644467, y: 0.91347885}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: backpack
+      name: Left_Leg
       rect:
         serializedVersion: 2
-        x: 852
-        y: 340
-        width: 129
-        height: 260
+        x: 250
+        y: 272
+        width: 186
+        height: 143
       alignment: 9
-      pivot: {x: 0.101678416, y: 0.7188033}
+      pivot: {x: 0.48962584, y: 0.74288255}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: right arm
+      name: Right_Arm
       rect:
         serializedVersion: 2
-        x: 55
-        y: 137
-        width: 273
-        height: 192
+        x: 831
+        y: 176
+        width: 321
+        height: 226
       alignment: 9
-      pivot: {x: 0.8092153, y: 0.91099167}
+      pivot: {x: 0.16337705, y: 0.8927445}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: right leg
+      name: Left_Foot
       rect:
         serializedVersion: 2
-        x: 656
-        y: 232
-        width: 161
-        height: 124
+        x: 239
+        y: 48
+        width: 204
+        height: 166
       alignment: 9
-      pivot: {x: 0.52279645, y: 0.78118795}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: right foot
-      rect:
-        serializedVersion: 2
-        x: 654
-        y: 42
-        width: 176
-        height: 144
-      alignment: 9
-      pivot: {x: 0.635549, y: 0.8823174}
+      pivot: {x: 0.33920228, y: 0.906837}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
