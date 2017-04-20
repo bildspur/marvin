@@ -4,6 +4,7 @@ public class CatLogic : MonoBehaviour
 {
 
     Rigidbody2D rb;
+    Animator animator;
 
     bool jumping = false;
 
@@ -11,6 +12,7 @@ public class CatLogic : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = this.transform.GetChild(0).transform.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -23,7 +25,7 @@ public class CatLogic : MonoBehaviour
         if (!jumping)
         {
             jumping = true;
-            //animator.SetTrigger("StartJump");
+            animator.SetTrigger("StartJump");
             rb.AddForce(transform.up * 300);
         }
     }
@@ -32,7 +34,7 @@ public class CatLogic : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Planet"))
         {
-            //animator.SetTrigger("StopJump");
+            animator.SetTrigger("StopJump");
             jumping = false;
         }
     }

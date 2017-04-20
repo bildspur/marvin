@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyLogic : MonoBehaviour
 {
+    public float startForce = 150;
 
     Rigidbody2D rigid;
     GameObject planet;
@@ -15,32 +16,32 @@ public class EnemyLogic : MonoBehaviour
         planet = GameObject.FindGameObjectWithTag("Planet");
 
         // set initial force
-        rigid.AddForce(Vector2.up * 150, ForceMode2D.Force);
+        rigid.AddForce(Vector2.up * startForce, ForceMode2D.Force);
     }
 
     // Update is called once per frame
     void Update()
     {
-		// look at 2d
-		LookAt2D(planet.transform);
+        // look at 2d
+        LookAt2D(planet.transform);
     }
 
-	public void OnCollisionEnter2D(Collision2D other)
+    public void OnCollisionEnter2D(Collision2D other)
     {
     }
 
     public void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("EnemyKiller"))
-		{
+        {
             Destroy(this.gameObject);
         }
     }
 
-	void LookAt2D(Transform target)
-	{
+    void LookAt2D(Transform target)
+    {
         Quaternion rotation = Quaternion.LookRotation
              (target.transform.position - transform.position, transform.TransformDirection(Vector3.up));
         transform.rotation = new Quaternion(0, 0, rotation.z, rotation.w);
-	}
+    }
 }

@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class PlayerLogic : MonoBehaviour, IJump
 {
+
+    public bool autoPlay = false;
     Rigidbody2D rb;
     Animator animator;
 
@@ -53,6 +55,11 @@ public class PlayerLogic : MonoBehaviour, IJump
         if (other.gameObject.CompareTag("Respawn"))
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+
+        if (autoPlay && other.gameObject.CompareTag("Enemy"))
+        {
+            Jump();
         }
     }
 
