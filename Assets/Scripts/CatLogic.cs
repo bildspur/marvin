@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class CatLogic : MonoBehaviour
 {
@@ -18,7 +16,6 @@ public class CatLogic : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
     }
 
     public void Jump()
@@ -44,7 +41,7 @@ public class CatLogic : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
-            Debug.Log("enemy hit by marvin");
+            Jump();
         }
     }
 }
