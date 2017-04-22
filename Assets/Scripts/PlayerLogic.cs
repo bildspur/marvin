@@ -7,6 +7,8 @@ public class PlayerLogic : MonoBehaviour, IJump
 {
 
     public bool autoPlay = false;
+
+    [ReadOnly] public bool isAlive = true;
     Rigidbody2D rb;
     Animator animator;
 
@@ -15,6 +17,7 @@ public class PlayerLogic : MonoBehaviour, IJump
     // Use this for initialization
     void Start()
     {
+        isAlive = true;
         rb = GetComponent<Rigidbody2D>();
         animator = this.transform.GetChild(0).transform.GetComponent<Animator>();
     }
@@ -76,6 +79,7 @@ public class PlayerLogic : MonoBehaviour, IJump
         // enemy from the side
         if (top == false)
         {
+            isAlive = false;
             animator.SetTrigger("Dead");
             var gravity = GetComponent("PlanetGravity") as PlanetGravity;
             gravity.maxGravity = 0;

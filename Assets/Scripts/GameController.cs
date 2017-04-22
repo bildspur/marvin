@@ -35,9 +35,14 @@ public class GameController : MonoBehaviour
 
     private int wave = 0;
 
+    HighScoreLogic highScore;
+
     void Start()
     {
         score = 0;
+
+        // find highscore
+        highScore = GameObject.Find("HighScore").GetComponent("HighScoreLogic") as HighScoreLogic;
 
         UpdateSpawnValues();
         UpdateScore();
@@ -65,7 +70,6 @@ public class GameController : MonoBehaviour
                 enemy.transform.localScale = scale;
 
                 yield return new WaitForSeconds(Random.Range(spawnWaitMinValue, spawnWaitMaxValue));
-                AddScore(1);
             }
             yield return new WaitForSeconds(waveWait);
             AddWave();
@@ -95,7 +99,12 @@ public class GameController : MonoBehaviour
 
     void UpdateScore()
     {
-        scoreText.text = "Wave: " + wave + " Score: " + score;
+        scoreText.text = "Wave: " + wave + " Score: " + score + " \nHigh: " + highScore.highScore;
+    }
+
+    void OnDestroy()
+    {
+        highScore.SetHighScore(score);
     }
 
     void Update()
