@@ -25,6 +25,7 @@ void setup()
     }
   }
 
+  println("Connecting to: " + portName);
   port = new Serial(this, portName, 115200);
 }
 

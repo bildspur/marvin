@@ -41,6 +41,6 @@ public class JumpDetector
     line(0, height - 20, width, height - 20);
 
     float amp = fft.getBand(specSize - 1);
-    println("Value: " + amp);
+    //println("Value: " + amp);
   }
 }
