@@ -19,6 +19,13 @@ public class SerialInput : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        // if serial monitor already exists
+        var sm = GameObject.Find(this.gameObject.name);
+        if (sm != null && sm != this.gameObject)
+        {
+            Destroy(this.gameObject);
+        }
+
         if (!isOn)
             return;
 
