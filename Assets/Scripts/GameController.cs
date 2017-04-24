@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using MidiJack;
 
 public class GameController : MonoBehaviour
 {
@@ -37,6 +38,10 @@ public class GameController : MonoBehaviour
 
     HighScoreLogic highScore;
 
+    public int noteNumber;
+
+    private volatile bool startGame = false;
+
     void Start()
     {
         score = 0;
@@ -51,6 +56,12 @@ public class GameController : MonoBehaviour
 
     IEnumerator SpawnWaves()
     {
+        // wait till start pressed
+        while (!startGame)
+        {
+            yield return new WaitForSeconds(1);
+        }
+
         yield return new WaitForSeconds(startWait);
         while (true)
         {
@@ -109,5 +120,11 @@ public class GameController : MonoBehaviour
 
     void Update()
     {
+        // wait for start
+        if (Input.GetKeyDown("s"))
+            startGame = true;
+
+        if (MidiMaster.GetKeyDown(noteNumber))
+            startGame = true;
     }
 }
