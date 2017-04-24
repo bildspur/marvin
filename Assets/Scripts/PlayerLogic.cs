@@ -57,7 +57,8 @@ public class PlayerLogic : MonoBehaviour, IJump
     {
         if (other.gameObject.CompareTag("Respawn"))
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
+            //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 
         if (autoPlay && other.gameObject.CompareTag("Enemy"))
@@ -85,6 +86,8 @@ public class PlayerLogic : MonoBehaviour, IJump
             gravity.maxGravity = 0;
             rb.constraints = RigidbodyConstraints2D.None;
             rb.AddTorque(15, ForceMode2D.Force);
+
+            (GameObject.Find("GameController").GetComponent("GameController") as GameController).ShowGameOver();
         }
     }
 }

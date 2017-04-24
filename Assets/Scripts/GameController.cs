@@ -42,12 +42,15 @@ public class GameController : MonoBehaviour
 
     private volatile bool startGame = false;
 
+    private GameObject infoText;
+
     void Start()
     {
         score = 0;
 
         // find highscore
         highScore = GameObject.Find("HighScore").GetComponent("HighScoreLogic") as HighScoreLogic;
+        infoText = GameObject.Find("InfoText");
 
         UpdateSpawnValues();
         UpdateScore();
@@ -122,9 +125,21 @@ public class GameController : MonoBehaviour
     {
         // wait for start
         if (Input.GetKeyDown("s"))
-            startGame = true;
+            StartGame();
 
         if (MidiMaster.GetKeyDown(noteNumber))
-            startGame = true;
+            StartGame();
+    }
+
+    public void StartGame()
+    {
+        startGame = true;
+        infoText.GetComponent<Animator>().SetTrigger("RunOutro");
+    }
+
+    public void ShowGameOver()
+    {
+        infoText.GetComponent<Text>().text = "Game Over";
+        infoText.GetComponent<Animator>().SetTrigger("RunIntro");
     }
 }
