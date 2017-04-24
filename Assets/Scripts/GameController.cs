@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
@@ -29,8 +30,7 @@ public class GameController : MonoBehaviour
     public float enemySizeMaxFactor;
     public float startWait;
     public float waveWait;
-
-    public GUIText scoreText;
+    public Text scoreText;
     private int score;
 
     private int wave = 0;
