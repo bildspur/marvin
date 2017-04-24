@@ -14,13 +14,11 @@ void setup() {
   pinMode(BUTTON_PIN, INPUT_PULLUP);
   pinMode(BUTTON_LED, OUTPUT);
 
-  delay(500);
+  // turn on button
+  digitalWrite(BUTTON_LED, HIGH);
 }
 
 void loop() {
-  // turn on button
-  digitalWrite(BUTTON_LED, HIGH);
-
   if (isReady && digitalRead(BUTTON_PIN) == LOW) {
     digitalWrite(BUTTON_LED, LOW);
     sendMessage();
@@ -31,11 +29,13 @@ void loop() {
   if (digitalRead(BUTTON_PIN) == HIGH)
   {
     if (!isReady)
+    {
       usbMIDI.sendNoteOff(0, 0, 0);
+      digitalWrite(BUTTON_LED, HIGH);
+    }
 
     // reset
     isReady = true;
-    digitalWrite(BUTTON_LED, HIGH);
   }
 
   delay(10);
