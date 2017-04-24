@@ -25,10 +25,14 @@ void loop() {
     digitalWrite(BUTTON_LED, LOW);
     sendMessage();
     isReady = false;
+    usbMIDI.sendNoteOn(0, 127, 0);
   }
 
   if (digitalRead(BUTTON_PIN) == HIGH)
   {
+    if (!isReady)
+      usbMIDI.sendNoteOff(0, 0, 0);
+
     // reset
     isReady = true;
     digitalWrite(BUTTON_LED, HIGH);
@@ -45,5 +49,5 @@ void sendMessage()
     Keyboard.set_key1(KEY_3);
     Keyboard.send_now()
   */
-  Keyboard.print("S");
+  //Keyboard.print("S");
 }
