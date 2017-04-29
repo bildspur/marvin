@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using MidiJack;
+using Kino;
 
 public class GameController : MonoBehaviour
 {
@@ -129,6 +130,21 @@ public class GameController : MonoBehaviour
 
         if (MidiMaster.GetKeyDown(noteNumber))
             StartGame();
+
+        // switch is on
+        if (MidiMaster.GetKeyUp(1))
+            SetGlitch(true);
+
+        // switch is off
+        if (MidiMaster.GetKeyDown(1))
+            SetGlitch(false);
+    }
+
+    void SetGlitch(bool enabled)
+    {
+        var syphon = GameObject.Find("Syphon Camera");
+        var glitch = syphon.GetComponent<AnalogGlitch>();
+        glitch.enabled = enabled;
     }
 
     public void StartGame()

@@ -1,7 +1,7 @@
 #include <NewPing.h>
 
-#define TRIGGER_PIN  5
-#define ECHO_PIN     4
+#define TRIGGER_PIN  6
+#define ECHO_PIN     3
 #define MAX_DISTANCE 200
 
 // temperature
@@ -14,7 +14,7 @@ void setup() {
 }
 
 void loop() {
-  delay(30);
+  delay(10);
 
   float sonic = sonicSpeed(THETA);
   float pingTime = sonar.ping_median();

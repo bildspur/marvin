@@ -4,14 +4,19 @@
 
 #define BUTTON_PIN 10
 #define BUTTON_LED 7
+#define SWITCH_PIN 3
 
 bool isReady = false;
 int i = 0;
+
+bool switchStatus = false;
 
 void setup() {
   Serial.begin(9600);
 
   pinMode(BUTTON_PIN, INPUT_PULLUP);
+  pinMode(SWITCH_PIN, INPUT_PULLUP);
+
   pinMode(BUTTON_LED, OUTPUT);
 
   // turn on button
@@ -38,6 +43,22 @@ void loop() {
     isReady = true;
   }
 
+  // check switch
+  bool currentState = digitalRead(SWITCH_PIN) == HIGH;
+  if (currentState != switchStatus)
+  {
+    // something changed -> switch:
+    switchStatus = currentState;
+    if (currentState)
+    {
+      usbMIDI.sendNoteOn(1, 127, 0);
+    }
+    else
+    {
+      usbMIDI.sendNoteOff(1, 0, 0);
+    }
+  }
+  
   delay(10);
 }
 
