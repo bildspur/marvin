@@ -49,14 +49,6 @@ public class JumpDetector : MonoBehaviour
         PrepareBuffer();
         FFT.CalculateFFT(fftBuffer, false);
 
-        /*
-        for (int i = 0; i < fftBuffer.Length / 2; i++) // plot only the first half
-        {
-            // multiply the magnitude of each value by 2
-            Debug.DrawLine(new Vector3(i, 4), new Vector3(i, 4 + (float)fftBuffer[i].magnitude * 2), Color.white, 1, false);
-        }
-         */
-
         // check frequency band
         var amp = (float)fftBuffer[frequencyBand].magnitude * 2;
 
@@ -76,7 +68,6 @@ public class JumpDetector : MonoBehaviour
         // jump
         if (amp >= threshold)
         {
-            Debug.Log("Jump! -> Height: ");
             jump.Jump();
         }
 

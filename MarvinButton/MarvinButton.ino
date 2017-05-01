@@ -4,7 +4,7 @@
 
 #define BUTTON_PIN 10
 #define BUTTON_LED 7
-#define SWITCH_PIN 3
+#define SWITCH_PIN 4
 
 bool isReady = false;
 int i = 0;

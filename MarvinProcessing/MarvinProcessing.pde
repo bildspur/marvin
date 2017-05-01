@@ -3,7 +3,7 @@ import processing.serial.*;
 Serial port;
 float lastValue = 0;
 
-final String ARDUINO_MEGA = "tty.usbmodem";
+final String ARDUINO_MEGA = "cu.usb";
 
 RingBuffer buffer;
 JumpDetector detector = new JumpDetector();

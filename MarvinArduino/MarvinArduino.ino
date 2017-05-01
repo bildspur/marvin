@@ -14,10 +14,10 @@ void setup() {
 }
 
 void loop() {
-  delay(10);
+  delay(30);
 
   float sonic = sonicSpeed(THETA);
-  float pingTime = sonar.ping_median();
+  float pingTime = sonar.ping_median(3);
 
   float distanceMilli = (pingTime / 2.0) * sonic / 10000.0;
 
