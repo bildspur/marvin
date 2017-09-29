@@ -27,6 +27,13 @@ public class JumpDetector : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        // if jump detector already exists
+        var sm = GameObject.Find(this.gameObject.name);
+        if (sm != null && sm != this.gameObject)
+        {
+            Destroy(this.gameObject);
+        }
+
         // init buffers
         buffer = new RingBuffer<float>(bufferSize);
         fftBuffer = new Complex[bufferSize];
@@ -38,7 +45,19 @@ public class JumpDetector : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (jumpGameObject == null)
+        {
+            jumpGameObject = GameObject.Find("Astronaut");
+            jump = jumpGameObject.GetComponent(typeof(IJump)) as IJump;
+            input = serialInputGameObject.GetComponent(typeof(SerialInput)) as SerialInput;
+        }
+
         DetectJump(input.Value);
+    }
+
+    void Awake()
+    {
+        DontDestroyOnLoad(this.gameObject);
     }
 
     void DetectJump(float value)

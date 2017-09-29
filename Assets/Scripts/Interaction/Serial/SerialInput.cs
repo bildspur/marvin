@@ -29,6 +29,14 @@ public class SerialInput : MonoBehaviour
         if (!isOn)
             return;
 
+        RestartSerial();
+    }
+
+    void RestartSerial()
+    {
+        if (running == true)
+            StopSerial();
+
         serialThread = new Thread(new ThreadStart(SerialRun));
         running = true;
 
@@ -45,7 +53,7 @@ public class SerialInput : MonoBehaviour
 
     void Awake()
     {
-        //DontDestroyOnLoad(transform.gameObject);
+        DontDestroyOnLoad(this.gameObject);
     }
 
     // Update is called once per frame
@@ -64,6 +72,11 @@ public class SerialInput : MonoBehaviour
     }
 
     void Stop()
+    {
+        StopSerial();
+    }
+
+    void StopSerial()
     {
         if (running)
         {
