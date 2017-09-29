@@ -41,7 +41,7 @@ public class GameController : MonoBehaviour
 
     public int noteNumber;
 
-    private volatile bool startGame = false;
+    private volatile bool startGame = true;
 
     private GameObject infoText;
 
@@ -56,6 +56,10 @@ public class GameController : MonoBehaviour
         UpdateSpawnValues();
         UpdateScore();
         StartCoroutine(SpawnWaves());
+
+        // auto run
+        infoText.GetComponent<Text>().text = "KDAMDAN!";
+        infoText.GetComponent<Animator>().SetTrigger("RunOutro");
     }
 
     IEnumerator SpawnWaves()
