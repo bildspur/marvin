@@ -8,7 +8,7 @@ public class SerialInput : MonoBehaviour
 
     public bool isOn = true;
 
-    public string deviceName = "tty.usbmodem1461";
+    public string deviceName = "";
 
     bool running = false;
 
@@ -32,7 +32,7 @@ public class SerialInput : MonoBehaviour
         RestartSerial();
     }
 
-    void RestartSerial()
+    public void RestartSerial()
     {
         if (running == true)
             StopSerial();
@@ -41,7 +41,7 @@ public class SerialInput : MonoBehaviour
         running = true;
 
         serialPort = new SerialPort();
-        serialPort.PortName = "/dev/" + deviceName;
+        serialPort.PortName = deviceName;
         serialPort.BaudRate = 115200;
         serialPort.Open();
 
@@ -76,7 +76,7 @@ public class SerialInput : MonoBehaviour
         StopSerial();
     }
 
-    void StopSerial()
+    public void StopSerial()
     {
         if (running)
         {

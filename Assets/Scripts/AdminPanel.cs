@@ -16,11 +16,13 @@ public class AdminPanel : MonoBehaviour
 
     private Dropdown serialPortSelection;
 
-    List<string> ports = new List<string>(SerialPort.GetPortNames());
+    List<string> ports;
 
     // Use this for initialization
     void Start()
     {
+        ports = GetSerialPortNames();
+
         Debug.Log("Found " + ports.Count + " serial devices...");
         sensitivityValue = GameObject.Find("SensitivityValue").GetComponent<Text>();
         sensitivitySlider = GameObject.Find("SensitivitySlider").GetComponent<Slider>();
@@ -32,12 +34,32 @@ public class AdminPanel : MonoBehaviour
         sensitivitySlider.value = detector.threshold;
 
         serialPortSelection.options.Clear();
-        serialPortSelection.AddOptions(ports);
+        ports.ForEach(e => serialPortSelection.options.Add(new Dropdown.OptionData(e)));
+        serialPortSelection.captionText.text = serialInput.deviceName;
 
         sensitivitySlider.onValueChanged.AddListener(delegate { ValueChangeCheck(); });
         serialPortSelection.onValueChanged.AddListener(delegate { SerialPortChange(); });
 
         ValueChangeCheck();
+    }
+
+    List<string> GetSerialPortNames()
+    {
+        int p = (int)System.Environment.OSVersion.Platform;
+        var serialPorts = new List<string>();
+
+        // Are we on Unix?
+        if (p == 4 || p == 128 || p == 6)
+        {
+            var ttys = System.IO.Directory.GetFiles("/dev/", "tty.*");
+            foreach (string dev in ttys)
+            {
+                if (dev.StartsWith("/dev/tty."))
+                    serialPorts.Add(dev);
+            }
+        }
+
+        return serialPorts;
     }
 
     public void ValueChangeCheck()
@@ -48,7 +70,9 @@ public class AdminPanel : MonoBehaviour
 
     public void SerialPortChange()
     {
-        Debug.Log("New Port: " + serialPortSelection.itemText);
+        var device = serialPortSelection.options[serialPortSelection.value].text;
+        serialInput.deviceName = device;
+        serialInput.RestartSerial();
     }
 
     // Update is called once per frame
